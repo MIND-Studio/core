@@ -31,12 +31,14 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json && cp src/login-card.css dist/login-card.css",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "peerDependencies": {
-    "react": ">=19.0.0",
     "@inrupt/solid-client": "^3.0.0",
-    "@mind-studio/ui": "*"
+    "@mind-studio/ui": "*",
+    "react": ">=19.0.0"
   },
   "peerDependenciesMeta": {
     "@inrupt/solid-client": {
@@ -49,8 +51,17 @@
   "devDependencies": {
     "@inrupt/solid-client": "^3.0.0",
     "@mind-studio/ui": "^0.1.0",
+    "@storybook/addon-docs": "^9.1.20",
+    "@storybook/react-vite": "^9.1.20",
+    "@tailwindcss/vite": "^4.3.0",
     "@types/react": "^19",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.2.0",
     "react": "^19",
-    "typescript": "^5"
+    "react-dom": "^19.2.6",
+    "storybook": "^9.1.20",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^5",
+    "vite": "^7.3.3"
   }
 }
