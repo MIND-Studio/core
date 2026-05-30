@@ -49,6 +49,8 @@ export type MindAppLauncherProps = {
   triggerClassName?: string;
   /** Called if the pod read fails in self-fetch mode. */
   onError?: (err: unknown) => void;
+  /** Render the menu open on mount (uncontrolled). Handy for previews/tests. */
+  defaultOpen?: boolean;
 };
 
 /** The 3×3 "apps" grid icon, à la Google's launcher. */
@@ -69,6 +71,7 @@ export function MindAppLauncher({
   manageHref,
   triggerClassName,
   onError,
+  defaultOpen,
 }: MindAppLauncherProps) {
   const [fetched, setFetched] = useState<AppEntry[] | null>(appsProp ?? null);
 
@@ -90,7 +93,7 @@ export function MindAppLauncher({
   const apps = appsProp ?? fetched;
 
   return (
-    <DropdownMenu>
+    <DropdownMenu defaultOpen={defaultOpen}>
       <DropdownMenuTrigger asChild>
         <button
           aria-label="Open apps"

@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+/* @mind-studio/ui tokens + utilities — needed by the MindAppLauncher stories
+   (the dropdown is built on @mind-studio/ui). MindLoginCard ships its own plain
+   CSS and needs none of this. */
+@import "../node_modules/@mind-studio/ui/dist/styles.css";
+@source "../node_modules/@mind-studio/ui/dist";
+@source "../stories";
+@source "../src";
+
+/* Paint the preview iframe with the design-system surface tokens. */
+html,
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}

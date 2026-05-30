@@ -1,5 +1,7 @@
 node_modules
 dist
+storybook-static
+*storybook.log
 # Lockfile intentionally not committed: @mind-studio/ui resolves from GitHub
 # Packages (a registry peer), and CI installs with --no-package-lock.
 package-lock.json
