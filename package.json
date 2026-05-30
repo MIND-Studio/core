@@ -1,0 +1,56 @@
+{
+  "name": "@mind-studio/core",
+  "version": "0.1.0",
+  "description": "Shared core for Mind prototypes — the unified login card, plus pod-backed business logic and components (app launcher).",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MIND-Studio/core.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./apps": {
+      "types": "./dist/apps/index.d.ts",
+      "import": "./dist/apps/index.js"
+    },
+    "./launcher": {
+      "types": "./dist/launcher/index.d.ts",
+      "import": "./dist/launcher/index.js"
+    },
+    "./login-card.css": "./dist/login-card.css"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && cp src/login-card.css dist/login-card.css",
+    "prepare": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=19.0.0",
+    "@inrupt/solid-client": "^3.0.0",
+    "@mind-studio/ui": "*"
+  },
+  "peerDependenciesMeta": {
+    "@inrupt/solid-client": {
+      "optional": true
+    },
+    "@mind-studio/ui": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@inrupt/solid-client": "^3.0.0",
+    "@mind-studio/ui": "^0.1.0",
+    "@types/react": "^19",
+    "react": "^19",
+    "typescript": "^5"
+  }
+}

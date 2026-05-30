@@ -1,0 +1,268 @@
+/* @mind-studio/core login card — plain CSS, no Tailwind. Accent color is provided
+   via the --mind-accent CSS variable set inline on the root element. */
+
+.mind-login-root {
+  width: 100%;
+  max-width: 28rem;
+  margin: 0 auto;
+  --mind-accent: #6366f1;
+  --mind-card-bg: #ffffff;
+  --mind-card-border: #e5e7eb;
+  --mind-text: #111827;
+  --mind-text-soft: #4b5563;
+  --mind-text-faint: #9ca3af;
+  --mind-divider: #e5e7eb;
+  --mind-input-bg: #ffffff;
+  --mind-input-border: #d1d5db;
+  --mind-chip-bg: #f9fafb;
+  --mind-warn: #b45309;
+  --mind-error: #b91c1c;
+  color: var(--mind-text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  .mind-login-root {
+    --mind-card-bg: #171717;
+    --mind-card-border: #262626;
+    --mind-text: #f5f5f5;
+    --mind-text-soft: #a3a3a3;
+    --mind-text-faint: #737373;
+    --mind-divider: #262626;
+    --mind-input-bg: #0a0a0a;
+    --mind-input-border: #404040;
+    --mind-chip-bg: rgba(38, 38, 38, 0.6);
+    --mind-warn: #fbbf24;
+    --mind-error: #f87171;
+  }
+}
+
+.mind-login-card {
+  border-radius: 1rem;
+  background: var(--mind-card-bg);
+  border: 1px solid var(--mind-card-border);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 0 10px 40px -10px color-mix(in srgb, var(--mind-accent) 20%, transparent);
+}
+
+.mind-login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+}
+
+.mind-login-logo {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  background: var(--mind-accent);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mind-login-kicker {
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mind-text-faint);
+  margin: 0;
+}
+
+.mind-login-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--mind-text);
+  margin: 0;
+  margin-top: 0.25rem;
+}
+
+.mind-login-tagline {
+  font-size: 0.875rem;
+  color: var(--mind-text-soft);
+  margin: 0;
+}
+
+.mind-login-warning {
+  font-size: 0.875rem;
+  color: var(--mind-warn);
+  margin: 0;
+}
+
+.mind-login-identity-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--mind-chip-bg);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+}
+
+.mind-login-avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background: var(--mind-accent);
+  color: #ffffff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mind-login-identity-meta {
+  min-width: 0;
+  flex: 1;
+}
+
+.mind-login-identity-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--mind-text);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mind-login-identity-sub {
+  font-size: 0.75rem;
+  color: var(--mind-text-soft);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mind-login-primary {
+  width: 100%;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.875rem 1.25rem;
+  background: var(--mind-accent);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.05s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: inherit;
+}
+
+.mind-login-primary:hover:not(:disabled) {
+  opacity: 0.92;
+}
+
+.mind-login-primary:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.mind-login-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mind-login-error {
+  font-size: 0.875rem;
+  color: var(--mind-error);
+  text-align: center;
+  margin: 0;
+}
+
+.mind-login-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: var(--mind-text-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: inherit;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.mind-login-toggle:hover {
+  color: var(--mind-text);
+  background: var(--mind-chip-bg);
+}
+
+.mind-login-toggle-chev {
+  transition: transform 0.2s ease;
+}
+
+.mind-login-toggle-chev[data-open="true"] {
+  transform: rotate(180deg);
+}
+
+.mind-login-advanced {
+  text-align: left;
+  margin-top: 0.75rem;
+}
+
+.mind-login-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--mind-text-soft);
+  margin-bottom: 0.375rem;
+}
+
+.mind-login-input {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  border: 1px solid var(--mind-input-border);
+  background: var(--mind-input-bg);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--mind-text);
+  font-family: inherit;
+}
+
+.mind-login-input:focus {
+  outline: none;
+  border-color: var(--mind-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--mind-accent) 20%, transparent);
+}
+
+.mind-login-hint {
+  font-size: 0.75rem;
+  color: var(--mind-text-faint);
+  margin: 0.375rem 0 0 0;
+}
+
+.mind-login-divider {
+  border-top: 1px solid var(--mind-divider);
+  padding-top: 1rem;
+}
+
+.mind-login-trust {
+  font-size: 0.75rem;
+  color: var(--mind-text-soft);
+  text-align: center;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.mind-login-issuer-host {
+  font-weight: 500;
+  color: var(--mind-text);
+}
+
+.mind-login-center {
+  text-align: center;
+}
