@@ -13,13 +13,15 @@ import { ensureSeeded, type AppEntry, type PodFetch } from "../apps";
  * rather than a rainbow. Custom apps get a stable hue hashed from their key.
  */
 const HUES: Record<string, number> = {
-  home: 210,
-  builder: 78,
+  dock: 210,
   drive: 248,
+  builder: 78,
+  codespaces: 196,
+  // Hues for apps not yet shipped — kept so a user who re-adds one gets a
+  // stable colour instead of a hashed fallback.
   chat: 165,
   social: 300,
   market: 14,
-  codespaces: 196,
   os: 268,
   agents: 145,
 };
