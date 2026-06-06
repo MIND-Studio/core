@@ -105,7 +105,7 @@ const handleLogin = browserOidcLogin(login, {
 
 ## Usage — server-side / custom flow
 
-For prototypes whose login is a Next.js route handler (`mind-agents-v0` POSTs to `/api/connect`, `mind-codespaces-v0` POSTs to `/api/auth/start`):
+For prototypes whose login is a Next.js route handler (`agents` POSTs to `/api/connect`, `codespaces` POSTs to `/api/auth/start`):
 
 ```tsx
 <MindLoginCard
@@ -154,7 +154,7 @@ Each app has its own storage key (`mind:<app-name>:last-identity`) — there is 
 | `defaultIssuer` | `string` | ✓ | The OIDC issuer to use if the user doesn't pick a custom one |
 | `onLogin` | `(args: { issuer }) => Promise<void>` | ✓ | What to do when the button is clicked — usually `browserOidcLogin(...)` or a fetch to your own route |
 | `accent` | `string` | | CSS color; defaults to indigo (`#6366f1`). See "Accents across the Mind ecosystem" below |
-| `allowCustomIssuer` | `boolean` | | Show the "Use a different pod" disclosure. Default `true`. Set `false` when the prototype has no choice (e.g. `mind-agents-v0` dev mode) |
+| `allowCustomIssuer` | `boolean` | | Show the "Use a different pod" disclosure. Default `true`. Set `false` when the prototype has no choice (e.g. `agents` dev mode) |
 | `tagline` | `string` | | Overrides "Sign in once. Use everywhere." |
 | `trustLine` | `string` | | Overrides the default "Your identity lives in your pod…" copy |
 | `needsReauth` | `boolean` | | Shows "Reconnect" instead of "Continue with Mind" + an amber warning. For the known DPoP-state-loss case |
@@ -165,14 +165,14 @@ Each app has its own storage key (`mind:<app-name>:last-identity`) — there is 
 
 | Prototype | Accent | Hex |
 |---|---|---|
-| mind-os-v0 | phosphor green | `#1f8a52` |
-| mind-drive-v0 | blue | `#2f5fa6` |
-| mind-social-network-v0 | indigo | `#5a52d4` |
-| mind-codespaces-ide-v0 | purple | `#6e3aff` |
-| mind-codespaces-v0 | orange | `#c66c1f` |
-| mind-chat-v0 | cyan | `#0891b2` |
-| mind-market-v0 | red | `#c43f1c` |
-| mind-agents-v0 | rust | `#9a4421` |
-| mind-todo-v0 | rose | `#db2777` |
+| os | phosphor green | `#1f8a52` |
+| drive | blue | `#2f5fa6` |
+| social-network | indigo | `#5a52d4` |
+| codespaces-ide | purple | `#6e3aff` |
+| codespaces | orange | `#c66c1f` |
+| chat | cyan | `#0891b2` |
+| market | red | `#c43f1c` |
+| agents | rust | `#9a4421` |
+| todo | rose | `#db2777` |
 
 When adding a new sibling, pick an accent that's distinct from the nine above so users learn the visual identity. The card's other tokens (background, text, divider) come from CSS variables and adapt to `prefers-color-scheme`.
