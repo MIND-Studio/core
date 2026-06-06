@@ -33,9 +33,9 @@ before the apps' `npm install`. Consumers authenticate with a `read:packages` PA
 
 ## Why a tarball, not `file:..`
 
-Next.js 16's Turbopack rejects symlinks whose target sits outside the consumer's project root (`FileSystemPath("") … leaves the filesystem root`). `file:../mind-shared-ui` creates exactly such a symlink, so we ship a packed tarball instead — a real directory under each consumer's `node_modules/@mind-studio/core/`, no symlink, no panic.
+Next.js 16's Turbopack rejects symlinks whose target sits outside the consumer's project root (`FileSystemPath("") … leaves the filesystem root`). `file:../core` creates exactly such a symlink, so we ship a packed tarball instead — a real directory under each consumer's `node_modules/@mind-studio/core/`, no symlink, no panic.
 
-`mind-studio-core-0.1.0.tgz` is checked into the repo so fresh clones work without a build step.
+`mind-studio-core-0.1.1.tgz` is checked into the repo so fresh clones work without a build step.
 
 ## Consumption
 
@@ -44,7 +44,7 @@ In a sibling prototype's `package.json`:
 ```json
 {
   "dependencies": {
-    "@mind-studio/core": "file:../mind-shared-ui/mind-studio-core-0.1.0.tgz"
+    "@mind-studio/core": "file:../core/mind-studio-core-0.1.1.tgz"
   }
 }
 ```
@@ -75,7 +75,7 @@ The dropdown is a read-only quick switcher (tiles open in a new tab); editing th
 ## Iterating on the shared card
 
 ```bash
-cd mind-shared-ui
+cd core
 ./scripts/sync.sh
 ```
 

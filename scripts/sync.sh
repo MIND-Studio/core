@@ -31,13 +31,13 @@ for dir in "$SIBLINGS_DIR"/*/; do
   name="$(basename "$dir")"
   pkg="$dir/package.json"
   [ -f "$pkg" ] || continue
-  [ "$name" = "mind-shared-ui" ] && continue
+  [ "$name" = "core" ] && continue
   grep -q '"@mind-studio/core"' "$pkg" || continue
   echo "→ Installing into $name"
   (
     cd "$dir"
     # Use a relative path so package.json stays portable across machines.
-    npm install "../mind-shared-ui/$TGZ_NAME" --no-audit --no-fund --silent
+    npm install "../core/$TGZ_NAME" --no-audit --no-fund --silent
   )
   count=$((count + 1))
 done
