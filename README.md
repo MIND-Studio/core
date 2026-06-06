@@ -1,6 +1,6 @@
 # @mind-studio/core
 
-Shared core for the Mind prototypes. One visual language across every app; each app keeps its own session model. Verified end-to-end against the production pod (`codespaces-pod.duckdns.org`) — one credential entry, recognized across all sibling apps.
+Shared core for the Mind prototypes. One visual language across every app; each app keeps its own session model. Verified end-to-end against the production pod (`pod.mindpods.org`) — one credential entry, recognized across all sibling apps.
 
 Three entry points:
 
@@ -97,7 +97,7 @@ const handleLogin = browserOidcLogin(login, {
 
 <MindLoginCard
   appName="Drive"
-  defaultIssuer={process.env.NEXT_PUBLIC_SOLID_ISSUER ?? "https://codespaces-pod.duckdns.org/"}
+  defaultIssuer={process.env.NEXT_PUBLIC_SOLID_ISSUER ?? "https://pod.mindpods.org/"}
   accent="#2f5fa6"
   onLogin={handleLogin}
 />;
