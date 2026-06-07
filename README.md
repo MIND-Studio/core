@@ -176,3 +176,17 @@ Each app has its own storage key (`mind:<app-name>:last-identity`) — there is 
 | todo | rose | `#db2777` |
 
 When adding a new sibling, pick an accent that's distinct from the nine above so users learn the visual identity. The card's other tokens (background, text, divider) come from CSS variables and adapt to `prefers-color-scheme`.
+
+## Releases
+
+Versioning, `CHANGELOG.md`, and tags are automated with
+[release-please](https://github.com/googleapis/release-please) — **don't tag or
+edit `CHANGELOG.md` by hand.**
+
+1. Commit to `main` using [Conventional Commits](https://www.conventionalcommits.org):
+   `fix:` → patch, `feat:` → minor, `feat!:` / `BREAKING CHANGE:` → major.
+   `chore:` / `docs:` / `refactor:` / `test:` don't trigger a release.
+2. release-please keeps an open **"chore(main): release X.Y.Z"** PR that rolls the
+   pending commits into `CHANGELOG.md` and bumps the version.
+3. Merge that PR to release: it creates the `vX.Y.Z` tag + GitHub Release, which
+   fires `publish.yml` to publish the package to GitHub Packages.
