@@ -11,7 +11,7 @@ const meta: Meta<typeof MindLoginCard> = {
   parameters: { layout: "centered" },
   args: {
     appName: "Drive",
-    defaultIssuer: "https://pod.mindpods.org/",
+    defaultIssuer: "https://pods.mindpods.org/",
     accent: "#2f5fa6",
     onLogin: async () => {},
   },
@@ -31,7 +31,7 @@ export const Default: Story = {};
 export const ReturningUser: Story = {
   args: {
     lastIdentity: {
-      webId: "https://pod.mindpods.org/alice/profile/card#me",
+      webId: "https://pods.mindpods.org/alice/profile/card#me",
       displayName: "Alice Rivera",
     },
   },
@@ -42,7 +42,7 @@ export const NeedsReauth: Story = {
   args: {
     needsReauth: true,
     lastIdentity: {
-      webId: "https://pod.mindpods.org/alice/profile/card#me",
+      webId: "https://pods.mindpods.org/alice/profile/card#me",
       displayName: "Alice Rivera",
     },
   },

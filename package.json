@@ -1,6 +1,6 @@
 {
   "name": "@mind-studio/core",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Shared core for Mind prototypes — the unified login card, plus pod-backed business logic and components (app launcher).",
   "type": "module",
   "repository": {
@@ -22,6 +22,10 @@
     "./launcher": {
       "types": "./dist/launcher/index.d.ts",
       "import": "./dist/launcher/index.js"
+    },
+    "./feedback": {
+      "types": "./dist/feedback/index.d.ts",
+      "import": "./dist/feedback/index.js"
     },
     "./login-card.css": "./dist/login-card.css"
   },
