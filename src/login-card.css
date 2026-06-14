@@ -37,6 +37,47 @@
   }
 }
 
+/* Pinned color scheme (the `mode` prop) — the attribute selector outweighs
+   the media-query block, so a dark-only or light-only app stays consistent
+   regardless of the OS preference. */
+.mind-login-root[data-mode="light"] {
+  --mind-card-bg: #ffffff;
+  --mind-card-border: #e5e7eb;
+  --mind-text: #111827;
+  --mind-text-soft: #4b5563;
+  --mind-text-faint: #9ca3af;
+  --mind-divider: #e5e7eb;
+  --mind-input-bg: #ffffff;
+  --mind-input-border: #d1d5db;
+  --mind-chip-bg: #f9fafb;
+  --mind-warn: #b45309;
+  --mind-error: #b91c1c;
+}
+
+.mind-login-root[data-mode="dark"] {
+  --mind-card-bg: #171717;
+  --mind-card-border: #262626;
+  --mind-text: #f5f5f5;
+  --mind-text-soft: #a3a3a3;
+  --mind-text-faint: #737373;
+  --mind-divider: #262626;
+  --mind-input-bg: #0a0a0a;
+  --mind-input-border: #404040;
+  --mind-chip-bg: rgba(38, 38, 38, 0.6);
+  --mind-warn: #fbbf24;
+  --mind-error: #f87171;
+}
+
+.mind-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.mind-login-field {
+  text-align: left;
+}
+
 .mind-login-card {
   border-radius: 1rem;
   background: var(--mind-card-bg);
