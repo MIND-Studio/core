@@ -27,6 +27,10 @@
       "types": "./dist/feedback/index.d.ts",
       "import": "./dist/feedback/index.js"
     },
+    "./solid": {
+      "types": "./dist/solid/index.d.ts",
+      "import": "./dist/solid/index.js"
+    },
     "./login-card.css": "./dist/login-card.css"
   },
   "files": [
@@ -41,11 +45,15 @@
   },
   "peerDependencies": {
     "@inrupt/solid-client": "^3.0.0",
+    "@inrupt/solid-client-authn-browser": "^2.0.0 || ^3.0.0 || ^4.0.0",
     "@mind-studio/ui": "*",
     "react": ">=19.0.0"
   },
   "peerDependenciesMeta": {
     "@inrupt/solid-client": {
+      "optional": true
+    },
+    "@inrupt/solid-client-authn-browser": {
       "optional": true
     },
     "@mind-studio/ui": {
@@ -54,6 +62,7 @@
   },
   "devDependencies": {
     "@inrupt/solid-client": "^3.0.0",
+    "@inrupt/solid-client-authn-browser": "^4.0.0",
     "@mind-studio/ui": "^0.1.0",
     "@storybook/addon-docs": "^9.1.20",
     "@storybook/react-vite": "^9.1.20",
