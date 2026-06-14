@@ -31,6 +31,10 @@
       "types": "./dist/solid/index.d.ts",
       "import": "./dist/solid/index.js"
     },
+    "./wallet": {
+      "types": "./dist/wallet/index.d.ts",
+      "import": "./dist/wallet/index.js"
+    },
     "./login-card.css": "./dist/login-card.css"
   },
   "files": [
