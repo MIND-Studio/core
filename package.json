@@ -1,6 +1,6 @@
 {
   "name": "@mind-studio/core",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Shared core for Mind prototypes — the unified login card, plus pod-backed business logic and components (app launcher).",
   "type": "module",
   "repository": {

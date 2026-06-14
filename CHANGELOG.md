@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/MIND-Studio/core/compare/v0.5.0...v0.6.0) (2026-06-14)
+
+
+### Features
+
+* **wallet:** add read-only MIND balance helper (@mind-studio/core/wallet) ([b89414e](https://github.com/MIND-Studio/core/commit/b89414e3dab9037e01e7c860faa1611ac39205ba))
+
 ## [0.5.0](https://github.com/MIND-Studio/core/compare/v0.4.0...v0.5.0) (2026-06-14)
 
 
