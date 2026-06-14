@@ -1,7 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { login, logout } from "@inrupt/solid-client-authn-browser";
+import {
+  login,
+  logout,
+  getDefaultSession,
+  handleIncomingRedirect,
+  type Session,
+} from "@inrupt/solid-client-authn-browser";
 import { useMindTheme } from "@mind-studio/ui";
 import { useSolidClient } from "./context";
 
@@ -86,4 +92,99 @@ export function useBrokeredTheme() {
     apply(); // in case the welcome arrived before this mounted
     return client.broker.subscribeBrokeredTheme(apply);
   }, [client, setMode]);
+}
+
+export interface UseStandaloneSessionOptions {
+  /** OIDC `clientName` shown on the issuer's consent screen. */
+  clientName: string;
+  /**
+   * Remember the current deep-link path before the restore redirect so the
+   * /login/callback route can return the user there. Off by default; the apps
+   * that route deep links (e.g. chat) opt in.
+   */
+  rememberReturnTo?: boolean;
+}
+
+export interface UseStandaloneSessionResult {
+  webid: string | null;
+  loggedIn: boolean;
+  loading: boolean;
+  fetch: typeof globalThis.fetch | null;
+  signIn: (issuer: string) => Promise<void>;
+  signOut: () => Promise<void>;
+}
+
+/**
+ * Provider-free client-side session hook for apps that run **standalone only**
+ * (no Mind shell broker integration — chat, dock, builder). Restores the
+ * session via `handleIncomingRedirect({ restorePreviousSession: true })` on
+ * mount and exposes the current WebID plus sign-in / sign-out actions.
+ *
+ * This intentionally differs from {@link useSession}, which is backed by a
+ * {@link import("./create-client").SolidClient} and does NOT silent-restore
+ * (it brokers identity inside the shell instead). Use this one when there is no
+ * `MindSolidProvider` and no embedding.
+ */
+export function useStandaloneSession(
+  opts: UseStandaloneSessionOptions,
+): UseStandaloneSessionResult {
+  const { clientName, rememberReturnTo = false } = opts;
+  const [session, setSession] = useState<Session | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      // Restoring a session does a silent-auth redirect through /login/callback,
+      // which then bounces to a fixed route. Remember where we actually were so
+      // the callback can send us back (e.g. a deep link).
+      if (rememberReturnTo && typeof window !== "undefined") {
+        const path = window.location.pathname;
+        if (path !== "/" && !path.startsWith("/login")) {
+          try {
+            sessionStorage.setItem("mind:returnTo", path);
+          } catch {}
+        }
+      }
+      try {
+        await handleIncomingRedirect({ restorePreviousSession: true });
+      } catch {
+        // Restore failed — proceed as signed-out.
+      }
+      if (!cancelled) {
+        setSession(getDefaultSession());
+        setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [rememberReturnTo]);
+
+  async function signIn(issuer: string) {
+    await login({
+      oidcIssuer: issuer,
+      redirectUrl:
+        typeof window !== "undefined" ? `${window.location.origin}/login/callback` : "",
+      clientName,
+    });
+  }
+
+  async function signOut() {
+    await logout();
+    // `getDefaultSession()` returns the same singleton every call, so re-setting
+    // it would be a no-op for React (Object.is) and consumers would never see
+    // the signed-out state. Set `null` (a real reference change) so `loggedIn`
+    // flips and pages can redirect.
+    setSession(null);
+  }
+
+  return {
+    webid: session?.info?.webId ?? null,
+    loggedIn: !!session?.info?.isLoggedIn,
+    loading,
+    fetch: session?.fetch ?? null,
+    signIn,
+    signOut,
+  };
 }

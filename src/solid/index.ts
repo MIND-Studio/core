@@ -21,7 +21,10 @@ export { MindSolidProvider, useSolidClient } from "./context";
 export {
   useSession,
   useBrokeredTheme,
+  useStandaloneSession,
   type UseSessionResult,
+  type UseStandaloneSessionResult,
+  type UseStandaloneSessionOptions,
 } from "./hooks";
 export {
   StandaloneOnly,
