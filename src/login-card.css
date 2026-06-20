@@ -5,7 +5,7 @@
   width: 100%;
   max-width: 28rem;
   margin: 0 auto;
-  --mind-accent: #6366f1;
+  --mind-accent: var(--primary, #0d9488);
   --mind-card-bg: #ffffff;
   --mind-card-border: #e5e7eb;
   --mind-text: #111827;
