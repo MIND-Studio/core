@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/MIND-Studio/core/compare/v0.6.0...v0.7.0) (2026-06-20)
+
+
+### Features
+
+* **login:** default accent to ([9b7a68b](https://github.com/MIND-Studio/core/commit/9b7a68bf4dd0f0adad83ad1c29bcdfeb32699095))
+
 ## [0.6.0](https://github.com/MIND-Studio/core/compare/v0.5.0...v0.6.0) (2026-06-14)
 
 
