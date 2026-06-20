@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.1](https://github.com/MIND-Studio/core/compare/v0.7.0...v0.7.1) (2026-06-20)
+
+
+### Bug Fixes
+
+* **deps:** widen @mind-studio/ui peer to &gt;=0.3.0 ([5012b2e](https://github.com/MIND-Studio/core/commit/5012b2e6cb27a81f01fa003823280941c2b2ee53))
+* **deps:** widen @mind-studio/ui peer to &gt;=0.3.0 → core 0.7.1 ([1d8b181](https://github.com/MIND-Studio/core/commit/1d8b1810e53d1b9823e7dd64a04b163451b748f0))
+
 ## [0.7.0](https://github.com/MIND-Studio/core/compare/v0.6.0...v0.7.0) (2026-06-20)
 
 
