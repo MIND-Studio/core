@@ -63,7 +63,7 @@ export function MindLoginCard({
   appName,
   defaultIssuer,
   onLogin,
-  accent = "#6366f1",
+  accent = "var(--primary)",
   allowCustomIssuer = true,
   tagline = "Sign in once. Use everywhere.",
   trustLine = "Your identity lives in your pod. We never see your password.",
