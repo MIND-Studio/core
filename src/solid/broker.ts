@@ -39,6 +39,10 @@ export interface BrokerIdentity {
   webId: string;
   /** Workspace pod root, trailing-slashed — the app's pod root inside the shell. */
   podRoot: string;
+  /** The shell's active project, or null for the whole-workspace ("no project")
+   *  scope. A project-scoped app should follow this instead of its own default,
+   *  so the shell's project switcher and the embedded app never disagree. */
+  project: { id: string; name: string } | null;
 }
 
 /** The shell's color mode, handed over the bridge so app chrome matches it. */
@@ -48,6 +52,11 @@ export type BrokerTheme = "light" | "dark";
 export interface Broker {
   isBrokered(): boolean;
   brokeredIdentity(): BrokerIdentity | null;
+  /** Notify when the brokered identity changes WITHOUT a reload — chiefly a
+   *  project switch in the shell's switcher (the host re-binds the bridge and
+   *  re-posts welcome instead of reloading the frame). A project-scoped app
+   *  re-resolves its active project from this. */
+  subscribeBrokeredIdentity(fn: () => void): () => void;
   currentBrokeredTheme(): BrokerTheme | null;
   subscribeBrokeredTheme(fn: () => void): () => void;
   brokerFetch: typeof fetch;
@@ -145,7 +154,11 @@ interface BridgeData {
   t?: string;
   v?: number;
   id?: string;
-  identity?: { webId?: string; workspacePod?: string };
+  identity?: {
+    webId?: string;
+    workspacePod?: string;
+    project?: { id?: string; name?: string } | null;
+  };
   theme?: string;
   status?: number;
   url?: string;
@@ -165,6 +178,7 @@ export function createBroker(opts: { reqPrefix: string }): Broker {
   let brokered: BrokerIdentity | null = null;
   let brokeredTheme: BrokerTheme | null = null;
   const themeListeners = new Set<() => void>();
+  const identityListeners = new Set<() => void>();
   /** Origin of the hosting shell, learned from the welcome — posts pin to it. */
   let parentOrigin = "*";
   let reqCounter = 0;
@@ -187,8 +201,20 @@ export function createBroker(opts: { reqPrefix: string }): Broker {
       parentOrigin = ev.origin && ev.origin !== "null" ? ev.origin : "*";
       const id = data.identity;
       if (id?.webId && id?.workspacePod) {
-        brokered = { webId: id.webId, podRoot: ensureSlash(id.workspacePod) };
+        const project = id.project?.id
+          ? { id: id.project.id, name: id.project.name ?? id.project.id }
+          : null;
+        const next = { webId: id.webId, podRoot: ensureSlash(id.workspacePod), project };
+        // The host re-broadcasts welcome on every project switch (no reload), so
+        // detect a real change and notify subscribers — the app re-resolves.
+        const changed =
+          !brokered ||
+          brokered.webId !== next.webId ||
+          brokered.podRoot !== next.podRoot ||
+          (brokered.project?.id ?? null) !== (next.project?.id ?? null);
+        brokered = next;
         finishHandshake?.(brokered);
+        if (changed) identityListeners.forEach((fn) => fn());
       }
       // The shell re-broadcasts welcome on every theme toggle, so handle theme
       // on each welcome (not just the first) and notify subscribers on change.
@@ -329,6 +355,10 @@ export function createBroker(opts: { reqPrefix: string }): Broker {
   return {
     isBrokered: () => brokered !== null,
     brokeredIdentity: () => brokered,
+    subscribeBrokeredIdentity: (fn) => {
+      identityListeners.add(fn);
+      return () => identityListeners.delete(fn);
+    },
     currentBrokeredTheme: () => brokeredTheme,
     subscribeBrokeredTheme: (fn) => {
       themeListeners.add(fn);
