@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/MIND-Studio/core/compare/v0.7.1...v0.8.0) (2026-06-20)
+
+
+### Features
+
+* **broker:** carry shell project identity to embedded apps ([#13](https://github.com/MIND-Studio/core/issues/13)) ([90bb4a2](https://github.com/MIND-Studio/core/commit/90bb4a278154acce3af3ba38203dbe73dccb1da3))
+
 ## [0.7.1](https://github.com/MIND-Studio/core/compare/v0.7.0...v0.7.1) (2026-06-20)
 
 
