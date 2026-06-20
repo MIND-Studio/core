@@ -50,7 +50,7 @@
   "peerDependencies": {
     "@inrupt/solid-client": "^3.0.0",
     "@inrupt/solid-client-authn-browser": "^2.0.0 || ^3.0.0 || ^4.0.0",
-    "@mind-studio/ui": "^0.3.0",
+    "@mind-studio/ui": ">=0.3.0",
     "react": ">=19.0.0"
   },
   "peerDependenciesMeta": {
