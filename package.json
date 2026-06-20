@@ -50,7 +50,7 @@
   "peerDependencies": {
     "@inrupt/solid-client": "^3.0.0",
     "@inrupt/solid-client-authn-browser": "^2.0.0 || ^3.0.0 || ^4.0.0",
-    "@mind-studio/ui": "*",
+    "@mind-studio/ui": "^0.3.0",
     "react": ">=19.0.0"
   },
   "peerDependenciesMeta": {
@@ -67,7 +67,7 @@
   "devDependencies": {
     "@inrupt/solid-client": "^3.0.0",
     "@inrupt/solid-client-authn-browser": "^4.0.0",
-    "@mind-studio/ui": "^0.1.0",
+    "@mind-studio/ui": "^0.4.0",
     "@storybook/addon-docs": "^9.1.20",
     "@storybook/react-vite": "^9.1.20",
     "@tailwindcss/vite": "^4.3.0",
